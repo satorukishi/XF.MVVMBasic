@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XF.MVVMBasic.View.AlunoView" x:Name="pageAlunos">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adicionar" x:Name="btAdicionar" Command="{Binding OnNovoCMD}" Order="Primary" Priority="1" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Alunos" Font="16"/>
+            <ListView x:Name="lstAlunos" ItemsSource="{Binding Alunos}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remover" IsDestructive="True"
+                                          Command="{Binding BindingContext.OnRemoverCMD, Source={x:Reference pageAlunos}}"
+                                          CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
+                            <StackLayout Padding="5,0,5,0">
+                                <Label Text="{Binding Nome}" Font="14"/>
+                                <Label Text="{Binding Email}" Font="10"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<Label Text="Aluno" Font="20" />
+            <Label Text="{Binding Nome}" />
+            <Label Text="{Binding RM}" />
+            <Label Text="{Binding Email}" />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
